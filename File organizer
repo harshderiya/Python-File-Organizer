@@ -1,0 +1,31 @@
+import os
+import shutil
+source_folder = input("enter folder path:").strip()
+if not os.path.exists(source_folder):
+    print("The specified folder does not exist.")
+    exit()
+    
+for file in os.listdir(source_folder):
+  file_path = os.path.join(source_folder, file)
+  if file.endswith(".pdf"):
+    destination = os.path.join(source_folder, "PDFs")
+    if file.endswith(".jpg") or file.endswith(".jpeg") or file.endswith(".png"):
+      destination = os.path.join(source_folder, "Images")
+    if file.endswith(".docx") or file.endswith(".txt"):
+      destination = os.path.join(source_folder, "Documents")    
+    if file.endswith(".mp4") or file.endswith(".avi") or file.endswith(".mkv"):
+      destination = os.path.join(source_folder, "Videos")   
+    if file.endswith(".mp3") or file.endswith(".wav"):
+      destination = os.path.join(source_folder, "Music")
+    if file.endswith(".zip") or file.endswith(".rar"):
+        destination = os.path.join(source_folder, "Archives")
+    if file.endswith(".txt") or file.endswith(".docx") or file.endswith(".pdf"):
+        destination = os.path.join(source_folder, "Documents")
+    else:
+       continue
+
+    os.makedirs(destination, exist_ok=True)
+    shutil.move(file_path, destination)
+print("Files organized successfully!")
+
+    
